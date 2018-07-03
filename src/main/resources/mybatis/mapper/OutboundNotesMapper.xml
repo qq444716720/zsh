@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.OutboundNotesMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.OutboundNotes" >
+    <constructor >
+      <idArg column="outbound_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="work_order_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="outbound_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="outbound_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="depot_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="outbound_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    outbound_id, spare_id, work_order_no, outbound_type, outbound_quantity, depot_id, 
+    outbound_time, agent_id, explain
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_outbound_notes
+    where outbound_id = #{outboundId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_outbound_notes
+    where outbound_id = #{outboundId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.OutboundNotes" >
+    insert into tbl_outbound_notes (outbound_id, spare_id, work_order_no, 
+      outbound_type, outbound_quantity, depot_id, 
+      outbound_time, agent_id, explain
+      )
+    values (#{outboundId,jdbcType=CHAR}, #{spareId,jdbcType=CHAR}, #{workOrderNo,jdbcType=CHAR}, 
+      #{outboundType,jdbcType=CHAR}, #{outboundQuantity,jdbcType=INTEGER}, #{depotId,jdbcType=VARCHAR}, 
+      #{outboundTime,jdbcType=TIMESTAMP}, #{agentId,jdbcType=CHAR}, #{explain,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.OutboundNotes" >
+    insert into tbl_outbound_notes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="outboundId != null" >
+        outbound_id,
+      </if>
+      <if test="spareId != null" >
+        spare_id,
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no,
+      </if>
+      <if test="outboundType != null" >
+        outbound_type,
+      </if>
+      <if test="outboundQuantity != null" >
+        outbound_quantity,
+      </if>
+      <if test="depotId != null" >
+        depot_id,
+      </if>
+      <if test="outboundTime != null" >
+        outbound_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="explain != null" >
+        explain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="outboundId != null" >
+        #{outboundId,jdbcType=CHAR},
+      </if>
+      <if test="spareId != null" >
+        #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="outboundType != null" >
+        #{outboundType,jdbcType=CHAR},
+      </if>
+      <if test="outboundQuantity != null" >
+        #{outboundQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="depotId != null" >
+        #{depotId,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundTime != null" >
+        #{outboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+      <if test="explain != null" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.OutboundNotes" >
+    update tbl_outbound_notes
+    <set >
+      <if test="spareId != null" >
+        spare_id = #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no = #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="outboundType != null" >
+        outbound_type = #{outboundType,jdbcType=CHAR},
+      </if>
+      <if test="outboundQuantity != null" >
+        outbound_quantity = #{outboundQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="depotId != null" >
+        depot_id = #{depotId,jdbcType=VARCHAR},
+      </if>
+      <if test="outboundTime != null" >
+        outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+      <if test="explain != null" >
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where outbound_id = #{outboundId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.OutboundNotes" >
+    update tbl_outbound_notes
+    set spare_id = #{spareId,jdbcType=CHAR},
+      work_order_no = #{workOrderNo,jdbcType=CHAR},
+      outbound_type = #{outboundType,jdbcType=CHAR},
+      outbound_quantity = #{outboundQuantity,jdbcType=INTEGER},
+      depot_id = #{depotId,jdbcType=VARCHAR},
+      outbound_time = #{outboundTime,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=CHAR},
+      explain = #{explain,jdbcType=VARCHAR}
+    where outbound_id = #{outboundId,jdbcType=CHAR}
+  </update>
+</mapper>

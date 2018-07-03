@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.SupplierInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.SupplierInfo" >
+    <constructor >
+      <idArg column="supplier_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="supplier_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="contacts" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="phone" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="address" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    supplier_id, supplier_name, contacts, phone, address, agent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_supplier_info
+    where supplier_id = #{supplierId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_supplier_info
+    where supplier_id = #{supplierId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.SupplierInfo" >
+    insert into tbl_supplier_info (supplier_id, supplier_name, contacts, 
+      phone, address, agent_id)
+    values (#{supplierId,jdbcType=CHAR}, #{supplierName,jdbcType=VARCHAR}, #{contacts,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{address,jdbcType=VARCHAR}, #{agentId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.SupplierInfo" >
+    insert into tbl_supplier_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="supplierName != null" >
+        supplier_name,
+      </if>
+      <if test="contacts != null" >
+        contacts,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=CHAR},
+      </if>
+      <if test="supplierName != null" >
+        #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.SupplierInfo" >
+    update tbl_supplier_info
+    <set >
+      <if test="supplierName != null" >
+        supplier_name = #{supplierName,jdbcType=VARCHAR},
+      </if>
+      <if test="contacts != null" >
+        contacts = #{contacts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+    </set>
+    where supplier_id = #{supplierId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.SupplierInfo" >
+    update tbl_supplier_info
+    set supplier_name = #{supplierName,jdbcType=VARCHAR},
+      contacts = #{contacts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      address = #{address,jdbcType=VARCHAR},
+      agent_id = #{agentId,jdbcType=CHAR}
+    where supplier_id = #{supplierId,jdbcType=CHAR}
+  </update>
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.BrandsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.BrandsInfo" >
+    <constructor >
+      <idArg column="brands_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="brands_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="producer" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    brands_id, brands_name, producer, update_time, agent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_brands_info
+    where brands_id = #{brandsId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_brands_info
+    where brands_id = #{brandsId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.BrandsInfo" >
+    insert into tbl_brands_info (brands_id, brands_name, producer, 
+      update_time, agent_id)
+    values (#{brandsId,jdbcType=CHAR}, #{brandsName,jdbcType=VARCHAR}, #{producer,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{agentId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.BrandsInfo" >
+    insert into tbl_brands_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="brandsId != null" >
+        brands_id,
+      </if>
+      <if test="brandsName != null" >
+        brands_name,
+      </if>
+      <if test="producer != null" >
+        producer,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="brandsId != null" >
+        #{brandsId,jdbcType=CHAR},
+      </if>
+      <if test="brandsName != null" >
+        #{brandsName,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.BrandsInfo" >
+    update tbl_brands_info
+    <set >
+      <if test="brandsName != null" >
+        brands_name = #{brandsName,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        producer = #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+    </set>
+    where brands_id = #{brandsId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.BrandsInfo" >
+    update tbl_brands_info
+    set brands_name = #{brandsName,jdbcType=VARCHAR},
+      producer = #{producer,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=CHAR}
+    where brands_id = #{brandsId,jdbcType=CHAR}
+  </update>
+</mapper>

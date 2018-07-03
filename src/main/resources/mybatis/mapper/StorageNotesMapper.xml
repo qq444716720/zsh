@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.StorageNotesMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.StorageNotes" >
+    <constructor >
+      <idArg column="storage_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="work_order_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="storage_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="storage_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="depot_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="storage_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    storage_id, spare_id, work_order_no, storage_type, storage_quantity, depot_id, storage_time, 
+    agent_id, explain
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_storage_notes
+    where storage_id = #{storageId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_storage_notes
+    where storage_id = #{storageId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.StorageNotes" >
+    insert into tbl_storage_notes (storage_id, spare_id, work_order_no, 
+      storage_type, storage_quantity, depot_id, 
+      storage_time, agent_id, explain
+      )
+    values (#{storageId,jdbcType=CHAR}, #{spareId,jdbcType=CHAR}, #{workOrderNo,jdbcType=CHAR}, 
+      #{storageType,jdbcType=CHAR}, #{storageQuantity,jdbcType=INTEGER}, #{depotId,jdbcType=CHAR}, 
+      #{storageTime,jdbcType=TIMESTAMP}, #{agentId,jdbcType=CHAR}, #{explain,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.StorageNotes" >
+    insert into tbl_storage_notes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storageId != null" >
+        storage_id,
+      </if>
+      <if test="spareId != null" >
+        spare_id,
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no,
+      </if>
+      <if test="storageType != null" >
+        storage_type,
+      </if>
+      <if test="storageQuantity != null" >
+        storage_quantity,
+      </if>
+      <if test="depotId != null" >
+        depot_id,
+      </if>
+      <if test="storageTime != null" >
+        storage_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="explain != null" >
+        explain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storageId != null" >
+        #{storageId,jdbcType=CHAR},
+      </if>
+      <if test="spareId != null" >
+        #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="storageType != null" >
+        #{storageType,jdbcType=CHAR},
+      </if>
+      <if test="storageQuantity != null" >
+        #{storageQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="depotId != null" >
+        #{depotId,jdbcType=CHAR},
+      </if>
+      <if test="storageTime != null" >
+        #{storageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+      <if test="explain != null" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.StorageNotes" >
+    update tbl_storage_notes
+    <set >
+      <if test="spareId != null" >
+        spare_id = #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no = #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="storageType != null" >
+        storage_type = #{storageType,jdbcType=CHAR},
+      </if>
+      <if test="storageQuantity != null" >
+        storage_quantity = #{storageQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="depotId != null" >
+        depot_id = #{depotId,jdbcType=CHAR},
+      </if>
+      <if test="storageTime != null" >
+        storage_time = #{storageTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+      <if test="explain != null" >
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where storage_id = #{storageId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.StorageNotes" >
+    update tbl_storage_notes
+    set spare_id = #{spareId,jdbcType=CHAR},
+      work_order_no = #{workOrderNo,jdbcType=CHAR},
+      storage_type = #{storageType,jdbcType=CHAR},
+      storage_quantity = #{storageQuantity,jdbcType=INTEGER},
+      depot_id = #{depotId,jdbcType=CHAR},
+      storage_time = #{storageTime,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=CHAR},
+      explain = #{explain,jdbcType=VARCHAR}
+    where storage_id = #{storageId,jdbcType=CHAR}
+  </update>
+</mapper>

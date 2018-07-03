@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.AaplyForApproveNotesMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.AaplyForApproveNotes" >
+    <constructor >
+      <idArg column="id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="apply_user_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="apply_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="approve_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="approve_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="mark" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="apply_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="approve_explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, apply_user_id, spare_id, quantity, apply_time, approve_id, approve_time, mark, 
+    apply_explain, approve_explain
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_aaplyForApprove_notes
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_aaplyForApprove_notes
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.AaplyForApproveNotes" >
+    insert into tbl_aaplyForApprove_notes (id, apply_user_id, spare_id, 
+      quantity, apply_time, approve_id, 
+      approve_time, mark, apply_explain, 
+      approve_explain)
+    values (#{id,jdbcType=CHAR}, #{applyUserId,jdbcType=CHAR}, #{spareId,jdbcType=VARCHAR}, 
+      #{quantity,jdbcType=INTEGER}, #{applyTime,jdbcType=TIMESTAMP}, #{approveId,jdbcType=CHAR}, 
+      #{approveTime,jdbcType=TIMESTAMP}, #{mark,jdbcType=CHAR}, #{applyExplain,jdbcType=VARCHAR}, 
+      #{approveExplain,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.AaplyForApproveNotes" >
+    insert into tbl_aaplyForApprove_notes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="applyUserId != null" >
+        apply_user_id,
+      </if>
+      <if test="spareId != null" >
+        spare_id,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="approveId != null" >
+        approve_id,
+      </if>
+      <if test="approveTime != null" >
+        approve_time,
+      </if>
+      <if test="mark != null" >
+        mark,
+      </if>
+      <if test="applyExplain != null" >
+        apply_explain,
+      </if>
+      <if test="approveExplain != null" >
+        approve_explain,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="applyUserId != null" >
+        #{applyUserId,jdbcType=CHAR},
+      </if>
+      <if test="spareId != null" >
+        #{spareId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveId != null" >
+        #{approveId,jdbcType=CHAR},
+      </if>
+      <if test="approveTime != null" >
+        #{approveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null" >
+        #{mark,jdbcType=CHAR},
+      </if>
+      <if test="applyExplain != null" >
+        #{applyExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="approveExplain != null" >
+        #{approveExplain,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.AaplyForApproveNotes" >
+    update tbl_aaplyForApprove_notes
+    <set >
+      <if test="applyUserId != null" >
+        apply_user_id = #{applyUserId,jdbcType=CHAR},
+      </if>
+      <if test="spareId != null" >
+        spare_id = #{spareId,jdbcType=VARCHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveId != null" >
+        approve_id = #{approveId,jdbcType=CHAR},
+      </if>
+      <if test="approveTime != null" >
+        approve_time = #{approveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mark != null" >
+        mark = #{mark,jdbcType=CHAR},
+      </if>
+      <if test="applyExplain != null" >
+        apply_explain = #{applyExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="approveExplain != null" >
+        approve_explain = #{approveExplain,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.AaplyForApproveNotes" >
+    update tbl_aaplyForApprove_notes
+    set apply_user_id = #{applyUserId,jdbcType=CHAR},
+      spare_id = #{spareId,jdbcType=VARCHAR},
+      quantity = #{quantity,jdbcType=INTEGER},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      approve_id = #{approveId,jdbcType=CHAR},
+      approve_time = #{approveTime,jdbcType=TIMESTAMP},
+      mark = #{mark,jdbcType=CHAR},
+      apply_explain = #{applyExplain,jdbcType=VARCHAR},
+      approve_explain = #{approveExplain,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

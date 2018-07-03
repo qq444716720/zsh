@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.SpareInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.SpareInfo" >
+    <constructor >
+      <idArg column="spare_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_parent_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="spare_model" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="erp_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="brands_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="supplier_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="unit" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="inventory_warning_quantity" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="explain" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spare_id, spare_parent_id, spare_name, spare_model, erp_no, brands_id, supplier_id, 
+    unit, inventory_warning_quantity, explain, update_time, agent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_spare_info
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_spare_info
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.SpareInfo" >
+    insert into tbl_spare_info (spare_id, spare_parent_id, spare_name, 
+      spare_model, erp_no, brands_id, 
+      supplier_id, unit, inventory_warning_quantity, 
+      explain, update_time, agent_id
+      )
+    values (#{spareId,jdbcType=CHAR}, #{spareParentId,jdbcType=CHAR}, #{spareName,jdbcType=VARCHAR}, 
+      #{spareModel,jdbcType=VARCHAR}, #{erpNo,jdbcType=CHAR}, #{brandsId,jdbcType=CHAR}, 
+      #{supplierId,jdbcType=CHAR}, #{unit,jdbcType=VARCHAR}, #{inventoryWarningQuantity,jdbcType=INTEGER}, 
+      #{explain,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{agentId,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.SpareInfo" >
+    insert into tbl_spare_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spareId != null" >
+        spare_id,
+      </if>
+      <if test="spareParentId != null" >
+        spare_parent_id,
+      </if>
+      <if test="spareName != null" >
+        spare_name,
+      </if>
+      <if test="spareModel != null" >
+        spare_model,
+      </if>
+      <if test="erpNo != null" >
+        erp_no,
+      </if>
+      <if test="brandsId != null" >
+        brands_id,
+      </if>
+      <if test="supplierId != null" >
+        supplier_id,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="inventoryWarningQuantity != null" >
+        inventory_warning_quantity,
+      </if>
+      <if test="explain != null" >
+        explain,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spareId != null" >
+        #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="spareParentId != null" >
+        #{spareParentId,jdbcType=CHAR},
+      </if>
+      <if test="spareName != null" >
+        #{spareName,jdbcType=VARCHAR},
+      </if>
+      <if test="spareModel != null" >
+        #{spareModel,jdbcType=VARCHAR},
+      </if>
+      <if test="erpNo != null" >
+        #{erpNo,jdbcType=CHAR},
+      </if>
+      <if test="brandsId != null" >
+        #{brandsId,jdbcType=CHAR},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=CHAR},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryWarningQuantity != null" >
+        #{inventoryWarningQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="explain != null" >
+        #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.SpareInfo" >
+    update tbl_spare_info
+    <set >
+      <if test="spareParentId != null" >
+        spare_parent_id = #{spareParentId,jdbcType=CHAR},
+      </if>
+      <if test="spareName != null" >
+        spare_name = #{spareName,jdbcType=VARCHAR},
+      </if>
+      <if test="spareModel != null" >
+        spare_model = #{spareModel,jdbcType=VARCHAR},
+      </if>
+      <if test="erpNo != null" >
+        erp_no = #{erpNo,jdbcType=CHAR},
+      </if>
+      <if test="brandsId != null" >
+        brands_id = #{brandsId,jdbcType=CHAR},
+      </if>
+      <if test="supplierId != null" >
+        supplier_id = #{supplierId,jdbcType=CHAR},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="inventoryWarningQuantity != null" >
+        inventory_warning_quantity = #{inventoryWarningQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="explain != null" >
+        explain = #{explain,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+    </set>
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.SpareInfo" >
+    update tbl_spare_info
+    set spare_parent_id = #{spareParentId,jdbcType=CHAR},
+      spare_name = #{spareName,jdbcType=VARCHAR},
+      spare_model = #{spareModel,jdbcType=VARCHAR},
+      erp_no = #{erpNo,jdbcType=CHAR},
+      brands_id = #{brandsId,jdbcType=CHAR},
+      supplier_id = #{supplierId,jdbcType=CHAR},
+      unit = #{unit,jdbcType=VARCHAR},
+      inventory_warning_quantity = #{inventoryWarningQuantity,jdbcType=INTEGER},
+      explain = #{explain,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      agent_id = #{agentId,jdbcType=CHAR}
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </update>
+</mapper>

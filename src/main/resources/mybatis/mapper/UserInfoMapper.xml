@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.UserInfo" >
+    <constructor >
+      <idArg column="user_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="user_name" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="password" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="authority" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    user_id, user_name, name, password, create_time, authority
+  </sql>
+
+  <select id="selectOne" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user_info
+    where user_id = #{userId,jdbcType=CHAR}
+  </select>
+
+  <select id="selectList" resultMap="BaseResultMap" parameterType="com.pjxt.zsh.pojo.UserInfo" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_user_info
+    where 1 = 1
+    <if test="userId != null" >
+      and user_id = #{userId}
+    </if>
+    <if test="userName != null" >
+      and user_name = #{userName}
+    </if>
+    <if test="name != null" >
+      and name = #{name}
+    </if>
+    <if test="password != null" >
+      and password = #{password}
+    </if>
+    <if test="createTime != null" >
+      and create_time = #{createTime}
+    </if>
+    <if test="authority != null" >
+      and authority = #{authority}
+    </if>
+  </select>
+
+  <delete id="delete" parameterType="java.lang.String" >
+    delete from tbl_user_info
+    where user_id = #{userId,jdbcType=CHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.UserInfo" >
+    insert into tbl_user_info (user_id, user_name, name, 
+      password, create_time, authority
+      )
+    values (#{userId,jdbcType=CHAR}, #{userName,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{authority,jdbcType=CHAR}
+      )
+  </insert>
+
+  <update id="update" parameterType="com.pjxt.zsh.pojo.UserInfo" >
+    update tbl_user_info
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="authority != null" >
+        authority = #{authority,jdbcType=CHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=CHAR}
+  </update>
+
+</mapper>

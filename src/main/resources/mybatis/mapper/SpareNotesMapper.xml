@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pjxt.zsh.dao.SpareNotesMapper" >
+  <resultMap id="BaseResultMap" type="com.pjxt.zsh.pojo.SpareNotes" >
+    <constructor >
+      <idArg column="spare_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="spare_status" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="work_order_no" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="storage_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="outbound_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="scrap_type" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="quantity" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="depot_id" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="create_time" jdbcType="CHAR" javaType="java.lang.String" />
+      <arg column="agent_id" jdbcType="CHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    spare_id, spare_status, work_order_no, storage_type, outbound_type, scrap_type, quantity, 
+    depot_id, create_time, agent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_spare_notes
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from tbl_spare_notes
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.pjxt.zsh.pojo.SpareNotes" >
+    insert into tbl_spare_notes (spare_id, spare_status, work_order_no, 
+      storage_type, outbound_type, scrap_type, 
+      quantity, depot_id, create_time, 
+      agent_id)
+    values (#{spareId,jdbcType=CHAR}, #{spareStatus,jdbcType=CHAR}, #{workOrderNo,jdbcType=CHAR}, 
+      #{storageType,jdbcType=CHAR}, #{outboundType,jdbcType=CHAR}, #{scrapType,jdbcType=CHAR}, 
+      #{quantity,jdbcType=CHAR}, #{depotId,jdbcType=CHAR}, #{createTime,jdbcType=CHAR}, 
+      #{agentId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pjxt.zsh.pojo.SpareNotes" >
+    insert into tbl_spare_notes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="spareId != null" >
+        spare_id,
+      </if>
+      <if test="spareStatus != null" >
+        spare_status,
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no,
+      </if>
+      <if test="storageType != null" >
+        storage_type,
+      </if>
+      <if test="outboundType != null" >
+        outbound_type,
+      </if>
+      <if test="scrapType != null" >
+        scrap_type,
+      </if>
+      <if test="quantity != null" >
+        quantity,
+      </if>
+      <if test="depotId != null" >
+        depot_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="spareId != null" >
+        #{spareId,jdbcType=CHAR},
+      </if>
+      <if test="spareStatus != null" >
+        #{spareStatus,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="storageType != null" >
+        #{storageType,jdbcType=CHAR},
+      </if>
+      <if test="outboundType != null" >
+        #{outboundType,jdbcType=CHAR},
+      </if>
+      <if test="scrapType != null" >
+        #{scrapType,jdbcType=CHAR},
+      </if>
+      <if test="quantity != null" >
+        #{quantity,jdbcType=CHAR},
+      </if>
+      <if test="depotId != null" >
+        #{depotId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pjxt.zsh.pojo.SpareNotes" >
+    update tbl_spare_notes
+    <set >
+      <if test="spareStatus != null" >
+        spare_status = #{spareStatus,jdbcType=CHAR},
+      </if>
+      <if test="workOrderNo != null" >
+        work_order_no = #{workOrderNo,jdbcType=CHAR},
+      </if>
+      <if test="storageType != null" >
+        storage_type = #{storageType,jdbcType=CHAR},
+      </if>
+      <if test="outboundType != null" >
+        outbound_type = #{outboundType,jdbcType=CHAR},
+      </if>
+      <if test="scrapType != null" >
+        scrap_type = #{scrapType,jdbcType=CHAR},
+      </if>
+      <if test="quantity != null" >
+        quantity = #{quantity,jdbcType=CHAR},
+      </if>
+      <if test="depotId != null" >
+        depot_id = #{depotId,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=CHAR},
+      </if>
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=CHAR},
+      </if>
+    </set>
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pjxt.zsh.pojo.SpareNotes" >
+    update tbl_spare_notes
+    set spare_status = #{spareStatus,jdbcType=CHAR},
+      work_order_no = #{workOrderNo,jdbcType=CHAR},
+      storage_type = #{storageType,jdbcType=CHAR},
+      outbound_type = #{outboundType,jdbcType=CHAR},
+      scrap_type = #{scrapType,jdbcType=CHAR},
+      quantity = #{quantity,jdbcType=CHAR},
+      depot_id = #{depotId,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=CHAR},
+      agent_id = #{agentId,jdbcType=CHAR}
+    where spare_id = #{spareId,jdbcType=CHAR}
+  </update>
+</mapper>
